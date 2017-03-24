@@ -1,0 +1,21 @@
+version: '2'
+services:
+  ngnix:
+    build: ./server
+    ports:
+      - "3000:80"
+    volumes:
+      - ./server:/etc/nginx/conf.d/
+    links:
+      - app
+  app:
+    build: .
+    ports:
+      - "9000"
+    volumes:
+      - .:/app
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: todoapp
+      POSTGRES_DB: todos
