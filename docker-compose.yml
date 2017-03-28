@@ -16,6 +16,8 @@ services:
       - .:/app
   postgres:
     image: postgres:9.6.2-alpine
+    logging:
+      driver: none
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos
