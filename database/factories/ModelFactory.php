@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\Todos::class, function (Faker\Generator $faker) {
+$factory->define(App\Todo::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->name,
         'completed' => false,

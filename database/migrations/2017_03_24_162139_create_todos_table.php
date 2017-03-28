@@ -18,7 +18,6 @@ class CreateTodosTable extends Migration
             $table->string('title');
             $table->boolean('completed');
             $table->integer('position');
-            $table->timestamps();
         });
     }
 

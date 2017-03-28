@@ -1,6 +1,5 @@
 <?php
 
-use App\Todos;
 use Illuminate\Http\Request;
 
 Route::get('/', 'TodosController@index');

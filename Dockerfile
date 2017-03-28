@@ -13,7 +13,7 @@ RUN apt-get install -y --no-install-recommends zlib1g-dev git zip \
   		&& mv composer.phar /usr/local/bin/ \
   		&& ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
-RUN composer global require "laravel/installer"
+RUN composer install
 
 ENV PATH="~/.composer/vendor/bin:./vendor/bin:${PATH}"
 
