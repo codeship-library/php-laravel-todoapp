@@ -1,0 +1,7 @@
+- type: serial
+  steps:
+  - type: parallel
+    steps:
+    - name: phpunit
+      service: web
+      command: bin/ci phpunit

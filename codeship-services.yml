@@ -2,16 +2,12 @@ version: '2'
 services:
   ngnix:
     image: nginx:1.11.10-alpine
-    ports:
-      - "3000:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     links:
       - web
   web:
     build: .
-    ports:
-      - "9000"
     volumes:
       - .:/app
     links:
@@ -22,11 +18,10 @@ services:
       DB_DATABASE: todos
       DB_USERNAME: todoapp
       DB_PASSWORD: ''
+      TEST_DB_NAME: todos_testing
+    cached: true
   postgres:
     image: postgres:9.6.2-alpine
-    volumes:
-      - ./bin/create-db.sh:/docker-entrypoint-initdb.d/create-db.sh
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos
-      TEST_DB_NAME: todos_testing

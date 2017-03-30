@@ -4,14 +4,24 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
+use Illuminate\Support\Facades\Artisan;
 
 class TodosTest extends TestCase
 {
 
     private static $currentTodo;
+
+    public static function setUpBeforeClass()
+    {
+        parent::setUpBeforeClass();
+        exec('php artisan migrate');
+    }
+
+    public static function tearDownAfterClass()
+    {
+        exec('php artisan migrate:reset');
+        parent::tearDownAfterClass();
+    }
 
     /** @test */
     public function it_gets_all_todos()
@@ -34,12 +44,13 @@ class TodosTest extends TestCase
         $response
           ->assertStatus(200)
           ->assertJson(['title' => 'Do something new!', 'completed' => false, 'order' => 0]);
+
+        $this->assertArrayHasKey('url', $response->getOriginalContent());
     }
 
     /** @test */
     public function it_gets_one_todo()
     {
-
         $response = $this->get('/'.self::$currentTodo['id']);
 
         $response

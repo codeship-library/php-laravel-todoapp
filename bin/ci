@@ -1,0 +1,8 @@
+#!/bin/bash
+# Usage: bin/ci [setup]
+set -e
+
+bin/wait-for-postgres
+bin/create-db
+
+time $1
