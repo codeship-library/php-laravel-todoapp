@@ -25,7 +25,7 @@ services:
   postgres:
     image: postgres:9.6.2-alpine
     volumes:
-      - ./bin/create-db.sh:/docker-entrypoint-initdb.d/create-db.sh
+      - ./bin/create-db:/docker-entrypoint-initdb.d/create-db
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos
