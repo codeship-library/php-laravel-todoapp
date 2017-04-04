@@ -40,7 +40,7 @@ class Todo extends Model
       $url = $url.':'.$url_arr['port'];
     }
 
-    return $url.'/'.$this->attributes['id'];
+    return $url.'/todos/'.$this->attributes['id'];
   }
 
 }

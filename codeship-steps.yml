@@ -9,3 +9,7 @@
     tag: master
     service: deploy
     command: codeship_heroku deploy /deploy php-laravel-todoapp
+  - name: migrate
+    tag: master
+    service: deploy
+    command: heroku run --app php-laravel-todoapp -- php artisan migrate
