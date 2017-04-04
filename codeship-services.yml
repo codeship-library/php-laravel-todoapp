@@ -8,6 +8,7 @@ services:
       - web
   web:
     build: .
+    encrypted_env_file: deployment.env.encrypted
     volumes:
       - .:/app
     links:

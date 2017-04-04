@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -e
-
-psql -v ON_ERROR_STOP=1 -h "postgres" -p "5432" -U "todoapp" todos <<-EOSQL
-    CREATE DATABASE ${TEST_DB_NAME};
-    GRANT ALL PRIVILEGES ON DATABASE ${TEST_DB_NAME} TO todoapp;
-EOSQL
