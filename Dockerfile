@@ -16,8 +16,6 @@ RUN apt-get install -y --no-install-recommends zlib1g-dev git zip \
 COPY . /app
 WORKDIR /app
 
-RUN mkdir ./bootstrap/cache
-
 RUN composer install --prefer-source --no-interaction
 
 ENV PATH="~/.composer/vendor/bin:./vendor/bin:${PATH}"

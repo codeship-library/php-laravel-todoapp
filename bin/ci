@@ -3,6 +3,6 @@
 set -e
 
 bin/wait-for-postgres
-time php artisan migrate
+time php artisan migrate --force --no-interaction
 
 time $1

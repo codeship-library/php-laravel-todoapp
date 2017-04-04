@@ -9,8 +9,6 @@ services:
   web:
     build: .
     encrypted_env_file: deployment.env.encrypted
-    volumes:
-      - .:/app
     links:
       - postgres
     environment:
