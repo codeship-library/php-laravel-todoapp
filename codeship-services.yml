@@ -13,15 +13,15 @@ services:
     links:
       - postgres
     environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_DATABASE: todos
-      DB_USERNAME: todoapp
-      DB_PASSWORD: ''
-      TEST_DB_NAME: todos_testing
+      DATABASE_URL: postgres://todoapp@postgres/todos
     cached: true
   postgres:
     image: postgres:9.6.2-alpine
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos
+  deploy:
+    image: codeship/heroku-deployment
+    encrypted_env_file: deployment.env.encrypted
+    volumes:
+      - ./:/deploy

@@ -13,12 +13,12 @@ class TodosController extends Controller
       return Todo::all();
     }
 
-    public function store(Request $request)
+    public function create(Request $request)
     {
       return Todo::create($request->all());;
     }
 
-    public function show(Request $request)
+    public function get(Request $request)
     {
       return Todo::findOrFail($request->id);
     }
@@ -30,12 +30,12 @@ class TodosController extends Controller
       return $todo;
     }
 
-    public function destroy(Request $request)
+    public function delete(Request $request)
     {
       return response(Todo::destroy($request->id), 204);
     }
 
-    public function destroyAll()
+    public function deleteAll()
     {
       return response(Todo::getQuery()->delete(), 204);
     }

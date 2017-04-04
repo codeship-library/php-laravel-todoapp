@@ -3,6 +3,6 @@
 set -e
 
 bin/wait-for-postgres
-bin/create-db
+time php artisan migrate
 
 time $1

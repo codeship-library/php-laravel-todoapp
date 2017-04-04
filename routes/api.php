@@ -2,9 +2,16 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/', 'TodosController@index');
-Route::post('/', 'TodosController@store');
-Route::delete('/', 'TodosController@destroyAll');
-Route::get('/{id}', 'TodosController@show');
-Route::patch('/{id}', 'TodosController@update');
-Route::delete('/{id}', 'TodosController@destroy');
+Route::group(['prefix' => 'todos'], function() {
+
+    Route::get('/', "TodosController@index");
+    Route::post('/', "TodosController@create");
+    Route::delete('/', 'TodosController@deleteAll');
+
+    Route::group(['prefix' => '{id}'], function() {
+        Route::get('/', "TodosController@get");
+        Route::patch('/', "TodosController@update");
+        Route::delete('/', "TodosController@delete");
+    });
+
+});

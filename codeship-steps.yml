@@ -2,6 +2,10 @@
   steps:
   - type: parallel
     steps:
-    - name: phpunit
+    - name: tests
       service: web
       command: bin/ci phpunit
+  - name: deploy
+    tag: master
+    service: deploy
+    command: codeship_heroku deploy /deploy php-laravel-todoapp

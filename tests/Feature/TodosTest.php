@@ -27,7 +27,7 @@ class TodosTest extends TestCase
     public function it_gets_all_todos()
     {
         factory(\App\Todo::class, 5)->create();
-        $response = $this->get('/', ['Origin' => "Testing"]);
+        $response = $this->get('/todos', ['Origin' => "Testing"]);
         $response
           ->assertStatus(200)
           ->assertHeader('access-control-allow-origin', '*');
@@ -37,7 +37,7 @@ class TodosTest extends TestCase
     /** @test */
     public function it_creates_new_todo()
     {
-        $response = $this->post('/', ['title' => 'Do something new!']);
+        $response = $this->post('/todos', ['title' => 'Do something new!']);
 
         self::$currentTodo = $response->getOriginalContent();
 
@@ -51,7 +51,7 @@ class TodosTest extends TestCase
     /** @test */
     public function it_gets_one_todo()
     {
-        $response = $this->get('/'.self::$currentTodo['id']);
+        $response = $this->get('/todos/'.self::$currentTodo['id']);
 
         $response
           ->assertStatus(200)
@@ -61,7 +61,7 @@ class TodosTest extends TestCase
     /** @test */
     public function it_updates_todos()
     {
-        $response = $this->patch('/'.self::$currentTodo['id'], ['title' => 'Do something else!', 'completed' => true, 'order' => 100] );
+        $response = $this->patch('/todos/'.self::$currentTodo['id'], ['title' => 'Do something else!', 'completed' => true, 'order' => 100] );
         $response
           ->assertStatus(200)
           ->assertJson(['title' => 'Do something else!', 'completed' => true, 'order' => 100]);
@@ -70,10 +70,10 @@ class TodosTest extends TestCase
     /** @test */
     public function it_deletes_one_todo()
     {
-        $response = $this->delete('/'.self::$currentTodo['id']);
+        $response = $this->delete('/todos/'.self::$currentTodo['id']);
         $response->assertStatus(204);
 
-        $response = $this->get('/'.self::$currentTodo['id']);
+        $response = $this->get('/todos/'.self::$currentTodo['id']);
         $response
           ->assertStatus(404);
     }
@@ -81,10 +81,10 @@ class TodosTest extends TestCase
     /** @test */
     public function it_clears_all_todos()
     {
-        $response = $this->delete('/');
+        $response = $this->delete('/todos');
         $response->assertStatus(204);
 
-        $response = $this->get('/');
+        $response = $this->get('/todos');
         $response
           ->assertStatus(200);
         $this->assertEquals(count( $response->getOriginalContent() ), 0);

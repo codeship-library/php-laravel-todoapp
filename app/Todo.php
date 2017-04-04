@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 class Todo extends Model
 {
+
   protected $attributes = [
     'completed' => false,
     'position' => 0,
@@ -30,12 +31,13 @@ class Todo extends Model
 
   public function getUrlAttribute()
   {
-    $url_arr = parse_url(url()->full());
+
+    $url_arr = parse_url(Request::url());
     $url = $url_arr['scheme'].'://'.$url_arr['host'];
 
-    if ($url_arr['port'])
+    if (isset($url_arr['port']))
     {
-      $url.':'.$url_arr['port'];
+      $url = $url.':'.$url_arr['port'];
     }
 
     return $url.'/'.$this->attributes['id'];
