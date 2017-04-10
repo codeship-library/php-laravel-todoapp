@@ -171,7 +171,7 @@ At this point, you have everything you need to test and deploy the project.
 To simplify the deployment to Heroku, Codeship provides a Docker image called [`codeship/heroku-deployment`](https://documentation.codeship.com/pro/continuous-deployment/heroku/). We will be using this to deploy.
 
 1. Open the `codeship-steps.yml` file
-2. Locate the line `command: codeship_heroku deploy /deploy php-laravel-todoapp`
+2. Locate the lines `command: codeship_heroku deploy /deploy php-laravel-todoapp` and `command: heroku run --app php-laravel-todoapp -- php artisan migrate --no-interaction`
 3. Replace `php-laravel-todoapp` with your Heroku application name.
 4. Make sure all files are added, and commit your changes.
 3. Push to the master branch of your remote repository.
