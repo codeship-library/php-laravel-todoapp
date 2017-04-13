@@ -1,6 +1,6 @@
 version: '2'
 services:
-  ngnix:
+  nginx:
     image: nginx:1.11.10-alpine
     ports:
       - 80
