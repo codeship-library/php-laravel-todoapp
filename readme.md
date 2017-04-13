@@ -1,4 +1,4 @@
-# Codeship PHP Laravel Example
+# Codeship Pro PHP Laravel Example
 
 [ ![Codeship Status for codeship-library/php-laravel-todoapp](https://app.codeship.com/projects/a1e9ed50-fb78-0134-45e4-5e2c47e62404/status?branch=master)](https://app.codeship.com/projects/211535)
 
