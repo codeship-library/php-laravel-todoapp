@@ -1,14 +1,7 @@
 version: '2'
 services:
-  nginx:
-    image: nginx:1.11.10-alpine
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    links:
-      - web
   web:
     build: .
-    encrypted_env_file: deployment.env.encrypted
     links:
       - postgres
     environment:
@@ -19,6 +12,7 @@ services:
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos
+    cached: true
   deploy:
     image: codeship/heroku-deployment
     encrypted_env_file: deployment.env.encrypted
