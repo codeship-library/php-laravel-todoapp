@@ -1,17 +1,17 @@
-FROM php:5.6.30-fpm
+FROM php:5.6.30-fpm-alpine
 
-RUN apt-get update
+RUN apk update && apk add build-base
 
-RUN apt-get install libpq-dev postgresql-client -y \
+RUN apk add postgresql-dev \
   && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
   && docker-php-ext-install pdo pdo_pgsql pgsql
 
-RUN apt-get install -y --no-install-recommends zlib1g-dev git zip \
+RUN apk add zlib-dev git zip \
   && docker-php-ext-install zip
 
-  RUN curl -sS https://getcomposer.org/installer | php \
-  		&& mv composer.phar /usr/local/bin/ \
-  		&& ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php \
+		&& mv composer.phar /usr/local/bin/ \
+		&& ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
 COPY . /app
 WORKDIR /app
