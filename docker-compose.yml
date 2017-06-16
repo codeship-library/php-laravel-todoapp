@@ -6,8 +6,6 @@ services:
       - 3000:80
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    links:
-      - web
   web:
     build: .
     ports:
@@ -15,8 +13,6 @@ services:
     volumes:
       - .:/app
       - /app/vendor
-    links:
-      - postgres
     environment:
       DATABASE_URL: postgres://todoapp@postgres/todos
   postgres:
