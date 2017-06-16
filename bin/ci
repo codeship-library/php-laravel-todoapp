@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Usage: bin/ci [setup]
 set -e
 
