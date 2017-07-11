@@ -1,6 +1,5 @@
-version: '2'
 services:
-  web:
+  web_codeship_example_php:
     build: .
     links:
       - postgres
@@ -12,8 +11,7 @@ services:
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos
-    cached: true
-  deploy:
+  deploy_codeship_example:
     image: codeship/heroku-deployment
     encrypted_env_file: deployment.env.encrypted
     volumes:
