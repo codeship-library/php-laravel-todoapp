@@ -13,6 +13,8 @@ services:
     volumes:
       - .:/app
       - /app/vendor
+    depends_on:
+      - postgres
     environment:
       DATABASE_URL: postgres://todoapp@postgres/todos
   postgres:
