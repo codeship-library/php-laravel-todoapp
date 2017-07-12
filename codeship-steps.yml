@@ -7,5 +7,5 @@
   command: codeship_heroku deploy /deploy php-laravel-todoapp
 - name: migrate
   tag: master
-  service: deploy_codeship_example_heroku
+  service: codeship_heroku_deployment
   command: heroku run --app php-laravel-todoapp -- php artisan migrate --no-interaction
