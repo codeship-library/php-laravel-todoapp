@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   nginx:
     image: nginx:1.11.10-alpine
@@ -18,7 +18,7 @@ services:
     environment:
       DATABASE_URL: postgres://todoapp@postgres/todos
   postgres:
-    image: postgres:9.6.2-alpine
+    image: healthcheck/postgres:alpine
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos
