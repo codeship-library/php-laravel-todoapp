@@ -1,4 +1,4 @@
-web_codeship_example_php:
+web-codeship-example-php:
   build: .
   depends_on:
     - postgres
@@ -10,7 +10,7 @@ postgres:
   environment:
     POSTGRES_USER: todoapp
     POSTGRES_DB: todos
-codeship_heroku_deployment:
+codeship-heroku-deployment:
   image: codeship/heroku-deployment
   encrypted_env_file: deployment.env.encrypted
   volumes:

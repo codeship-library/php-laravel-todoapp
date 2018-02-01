@@ -1,11 +1,11 @@
 - name: tests
-  service: web_codeship_example_php
+  service: web-codeship-example-php
   command: phpunit
 - name: deploy
   tag: master
-  service: codeship_heroku_deployment
+  service: codeship-heroku-deployment
   command: codeship_heroku deploy /deploy php-laravel-todoapp
 - name: migrate
   tag: master
-  service: codeship_heroku_deployment
+  service: codeship-heroku-deployment
   command: heroku run --app php-laravel-todoapp -- php artisan migrate --no-interaction
